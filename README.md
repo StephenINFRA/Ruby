@@ -1,35 +1,31 @@
-# firmware/
+# ruby-companion-cat
 
-Pre-compiled OpenClaw firmware binaries.
-Source code at: https://github.com/openclaw/openclaw-fw
+```
+   |\      _,,,---,,_
+   /,`.-'`'    -.  ;-;;,_
+  |,4-  ) )-,_..;\ (  `'-'     ruby-companion-cat v0.9.2
+ '---''(_/--'  `-'\_)          interactive companion platform
+                                powered by openclaw firmware
+```
 
-## Flashing
+Open-source stack for building an interactive, autonomous companion cat robot.
+Ruby is the reference implementation. All hardware is COTS sourced from local
+hardware stores, Taobao, or eBay.
+
+## Quickstart
 
 ```bash
-# Neural Unit (Arduino Mega 2560 core)
+git clone https://github.com/openclaw/ruby-companion-cat.git
+cd ruby-companion-cat
+pip install -r requirements.txt
 ./scripts/flash_neural.sh --port /dev/ttyUSB0 --verify
-
-# PurrSynth (ATtiny84)
 ./scripts/flash_purrsynth.sh --port /dev/ttyUSB1
+python3 scripts/calibrate_sensefur.py --output config/sensefur_cal.bin
+python3 -m ruby.runtime --config config.yaml
 ```
 
-## Versions
+See full docs in each module directory.
 
-| Binary                         | Target         | Version |
-|-------------------------------|----------------|---------|
-| openclaw_neural_v0.9.2.bin    | Arduino Mega   | 0.9.2   |
-| purrsynth_v2.1.bin            | ATtiny84       | 2.1.0   |
+## License
 
-## Serial Protocol (Neural Unit)
-
-```
-Frame format: [0xAA][LEN:2BE][CMD:1][PAYLOAD:LEN][CRC8:1]
-
-CMD 0x01  SET_DRIVE
-CMD 0x02  GET_DRIVES
-CMD 0x10  ENCODE_EVENT
-CMD 0x11  GET_TRUST
-CMD 0x20  GET_PERSONALITY
-CMD 0x21  RESET_PERSONALITY  -- DESTRUCTIVE
-CMD 0x30  PING -> PONG
-```
+MIT License. Copyright (c) 2025 OpenClaw Contributors.
