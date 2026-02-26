@@ -1,6 +1,6 @@
 # ruby-companion-cat
 
-<img src="ruby.GIF" width="700" />
+<img src="ruby.GIF.gif" width="700" />
 
 ```
    |\      _,,,---,,_
